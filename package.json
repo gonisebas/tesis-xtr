@@ -1,0 +1,25 @@
+{
+  "name": "tesis-xtr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonisebas/tesis-xtr.git"
+  },
+  "author": "gonisebas@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gonisebas/tesis-xtr/issues"
+  },
+  "homepage": "https://github.com/gonisebas/tesis-xtr#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "~3.6.11",
+    "method-override": "^2.1.2",
+    "body-parser": "^1.5.1"
+  }
+}
