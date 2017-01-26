@@ -1,0 +1,46 @@
+<h3 ui-view="ordersHeader"></h3>
+
+
+<div class="container">
+  <form name="ordersForm">
+  <div ui-view="ordersBody" class="col-lg-6"></div>
+</form>
+  
+  <div  class="col-lg-6">
+    <form name="formOrders">    
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="info">
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <th/>
+          <th/>
+          <th/>
+          <th>Total: {{orderingItems | totalSumPriceQty:'quantity':'product.price' | currency }}</th>
+        </tfoot>
+        <tbody>
+
+          <tr ng-repeat="orderingItem in orderingItems">
+            <td>
+              <a style="cursor: pointer" class="btn btn-danger btn-sm"  ng-click="removeItem(orderingItem)">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+              </a>
+              &nbsp;{{ orderingItem.product.name }}
+            </td>
+            <td><input type="number" style="width:3em;"  min="1" step="1" required ng-model="orderingItem.quantity"/></td>
+            <td>{{ orderingItem.product.price | currency  }}</td>
+            <td>{{ orderingItem.quantity * orderingItem.product.price | currency }}</td>
+          </tr>
+        </tbody>
+      </table> 
+    </form>    
+  </div>
+</div>
+<div ui-view="ordersActions" class="pull-right"></div>
+
+

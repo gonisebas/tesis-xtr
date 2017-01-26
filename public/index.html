@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delivery Online</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="css/despegar.css" media="screen">
+	
+	<script type="text/javascript" src="jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="angular-ui-router.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="datos.js"></script>
+	<script type="text/javascript" src="filters/filters.js"></script>
+	<script type="text/javascript" src="factories/factories.js"></script>
+	<script type="text/javascript" src="controllers/controllers.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bootstrap/js/ui-bootstrap-tpls-0.14.3.js"></script>
+	
+<script>
+
+	angular.element(document).ready(function() {
+	    angular.element("body").tooltip({ selector: '[data-toggle=tooltip]' });
+	});
+
+</script>
+	
+
+</head>
+
+<body  ng-app="deliveryApp">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<h3>Delivery Online</h3>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li ng-class="{ active: $state.is('deliveries')}"><a>1 - Elegí tu delivery</a></li>
+						<li ng-class="{ active: $state.is('delivery.order') }"><a>2 - Realizá tu pedido</a></li>
+						<li ng-class="{ active: $state.is('delivery.confirm') }"><a>3 - Completá tus datos</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+<div class="container" style=" margin-top: 70px;">
+	<div ui-view></div>
+</div>
+
+
+</body>
+
+</html>

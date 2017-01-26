@@ -1,0 +1,55 @@
+
+<div class="well bs-component">
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>Filtros</legend>
+			<div class="form-group">
+				<label class="col-lg-2 control-label" for="focusedInput">Nombre:</label>
+				<div class="col-lg-10">
+					<input class="form-control" id="focusedInput" type="text" ng-model="filter.name">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-lg-2 control-label" for="focusedInput">Descripción:</label>
+				<div class="col-lg-10">
+					<input class="form-control" id="focusedInput" type="text" ng-model="filter.description">
+				</div>
+			</div>
+		</fieldset>
+	</form>	
+</div>
+
+
+<!-- Listado de deliveries -->
+<div class="container-fluid" style="display: flex;flex-direction: row; flex-wrap: wrap;">
+
+	<div ng-repeat="delivery in deliveries | filter:filter:strict" class="col-lg-3">
+
+		<div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ delivery.name}}</h3>
+            </div>
+            <div class="panel-body">
+                {{ delivery.description }}
+				<p><a ui-sref="delivery.order({deliveryId: delivery.id})" >Realizar pedido</a></p>
+            </div>
+        </div>
+        
+	</div>
+
+	<div ng-repeat="notebook in notebooks" class="col-lg-3">
+
+		<div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ notebook.screen}}</h3>
+            </div>
+            <div class="panel-body">
+                {{ notebook.name }}
+				<p><a ui-sref="delivery.order({deliveryId: delivery.id})" >Realizar pedido</a></p>
+            </div>
+        </div>
+        
+	</div>
+</div>
+

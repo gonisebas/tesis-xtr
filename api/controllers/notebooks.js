@@ -1,6 +1,6 @@
 //File: controllers/notebooks.js
-var mongoose = require('mongoose');
-var Notebook  = mongoose.model('Notebook');
+//var mongoose = require('mongoose');
+var Notebook  = require('../models/notebooks');//mongoose.model('Notebook');
 
 //GET - Return all notebooks in the DB
 exports.findAllNotebooks = function(req, res) {

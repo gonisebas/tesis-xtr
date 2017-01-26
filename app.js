@@ -16,11 +16,12 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 // Import Models and controllers
-var models     = require('./models/notebooks')(app, mongoose);
+/**var models     = require('./models/notebooks')(app, mongoose);
 var NotebookCtrl = require('./controllers/notebooks');
+*/
 
 // Example Route
-var router = express.Router();
+/**var router = express.Router();
 router.get('/', function(req, res) {
   res.send("Hello world!");
 });
@@ -37,6 +38,11 @@ apiRoutes.route('/notebooks/:id')
   .get(NotebookCtrl.findById);
 
 app.use('/api', apiRoutes);
+*/
+// routes ======================================================================
+require('./api/routes.js')(app, express);
+
+app.use(express.static('public'));
 
 // Start server
 app.listen(3000, function() {

@@ -1,0 +1,29 @@
+ 
+  <div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+    	<li ng-repeat="section in sections"><a data-toggle="tab" ng-click="getSectionProducts(section.id)">{{ section.name }}</a></li>
+    </ul>
+  </div>
+
+  <div class="col-lg-9">
+    <table class="table table-striped table-hover ">
+     
+      <tbody>
+
+        <tr ng-repeat="product in products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>
+            <a data-toggle="tooltip" title="{{ product.description }}!"style="cursor: pointer" class="btn btn-primary btn-xs">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a style="cursor: pointer" class="btn btn-success btn-xs"  ng-click="addProduct(product)">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+
+
