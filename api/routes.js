@@ -16,7 +16,7 @@ var NotebookCtrl = require('./controllers/notebooks');
 	var apiRoutes = express.Router();
 
 	apiRoutes.route('/notebooks')
-	  .get(NotebookCtrl.findAllNotebooks)
+	  .get(NotebookCtrl.find)
 	  .post(NotebookCtrl.addNotebook);
 
 	apiRoutes.route('/notebooks/:id')

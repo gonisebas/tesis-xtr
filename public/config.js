@@ -1,6 +1,6 @@
 'use strict'
 
-var deliveryApp = angular.module('deliveryApp',['ui.router', 'ui.bootstrap']);
+var deliveryApp = angular.module('deliveryApp',['ui.router', 'ui.bootstrap', 'datePicker']);
 
 
 deliveryApp.run(function ($rootScope,$state,$log) {

@@ -43,6 +43,7 @@ app.use('/api', apiRoutes);
 require('./api/routes.js')(app, express);
 
 app.use(express.static('public'));
+app.use(express.static('node_modules'));
 
 // Start server
 app.listen(3000, function() {
