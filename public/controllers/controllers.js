@@ -1,7 +1,39 @@
-deliveryApp.controller('DeliveriesController', function($scope, deliveriesFactory, notebooksFactory) {
+deliveryApp.controller('MenuController', function($scope, $state) {
+
+	$scope.search = function(){
+		var parameters = {}
+		_.map($scope.searchParam, function(item,key){
+			if (key == 'screen'){
+				parameters.screen = new Array();
+				_.each(item, function(value){
+					parameters.screen.push(value);
+				})
+			}
+		});
+		$state.go('results', {searchParam: parameters});
+	}
+	
+	$scope.searchParam = {};
+});
+
+deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 
 	function init(){
-		$scope.deliveries = deliveriesFactory.getDeliveries();
+		notebooksFactory.getNotebooks().then(function(d) {
+		    $scope.notebooks  = d.slice(0, 5);
+		  });
+	};
+
+	init();
+});
+
+
+
+
+deliveryApp.controller('DeliveriesController', function($scope, $stateParams, notebooksFactory) {
+
+	function init(){
+		var params = $stateParams.searchString;
 		notebooksFactory.getNotebooks().then(function(d) {
 		    $scope.notebooks  = d;
 		  });
@@ -9,6 +41,8 @@ deliveryApp.controller('DeliveriesController', function($scope, deliveriesFactor
 
 	init();
 });
+
+
 
 deliveryApp.controller('OrdersController', function($scope, $stateParams, $filter, $location, $uibModal, ordersFactory) {
 	

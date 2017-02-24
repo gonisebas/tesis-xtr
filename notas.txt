@@ -1,0 +1,60 @@
+Los filtros de la izquierda tipo acordeon se abre uno a la vez (al expandir uno se contraen los demás)
+
+*** Filtros (para después de buscar) ***
+Lector de huellas | Bluetooth | Webcam | HDMI | Touch Screen
+
+SISTEMA OPERATIVO
+sin
+windows8
+windos10
+windows 7
+linux
+
+BATERIA
+Ion Litio 3 Celdas
+Ion Litio 4 Celdas
+Ion Litio 6 Celdas
+Lithium-ion polymer
+
+PLACA DE VIDEO
+ Video ATI Mobility Radeon HD 5470 512MB Dedicada
+ ATI Radeon R6 4 Nucleos
+ AMD Radeon R5 M335 2GB
+ INTEL HD GRAPHICS 4400
+ Intel HD5500
+ Video AMD Radeon HD 6290M
+
+Tarjeta Multiformato | 5 en 1 | 4 en 1 | 3 en 1 | 2 en 1
+
+BUSQUEDA
+Al usar los filtros de la izq se busca, se hace AND de los tipos de atributos y OR entre los valores
+(Lenovo OR Sony) AND (8Gb or 6Gb)
+
+INFERIR TIPO DE USUARIO:
+Dependiendo de la cantidad de filtros y cuales usa 
+-> si selecciona muchos y avanzados es del grupo de experimentados
+-> si selecciona pocos y elementales es del grupo de edad avanzada
+
+*** Búsqueda de la izq***
+Precio
+Marca
+Tamaño de pantalla
+Memoria
+Disco rigido
+Procesador
+Estado (nueva, usada, exhibición)
+
+
+
+PROBLEMA DE LA ORDENACIÓN
+Tengo ORDER BY precio, estrellas
+JACUZZI, PILETA, WIFI, ETC que lo puedo categorizar como
+- indispensable (tiene que tenerlo sí o sí)
+- opcional (puede prescindir o tenerlo en cuyo caso le da más importancia al hotel)
+- no se selecciona
+
+ORDER BY PRECIO ASC, PILETA INDISPENSABLE, OPCIONAL JACUZZI, OPCIONAL WIFI
+H1	CP	CJ	CW	$8000
+H2 	CP	SJ	SW	$8001
+H3	SP	CJ	CW	$9000	(no se muestra porque no tiene pileta)
+H4	CP	CJ	SW	$8002

@@ -16,15 +16,6 @@ deliveryApp.factory('ordersFactory', function(){
 	}
 });
 
-deliveryApp.factory('deliveriesFactory', function(){
-	return {
-		getDeliveries: function(sectionId){
-			return deliveries;
-		}
-	}
-});
-
-
 deliveryApp.factory('notebooksFactory',function($http){
 	return{
 		getNotebooks: function(){

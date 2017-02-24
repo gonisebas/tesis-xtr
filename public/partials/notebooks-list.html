@@ -1,0 +1,18 @@
+    
+<!-- Listado de deliveries -->
+<div class="container-fluid" style="display: flex;flex-direction: row; flex-wrap: wrap;">
+
+	<div ng-repeat="notebook in notebooks" class="col-lg-4">
+
+
+        <div class="card" style="width: 20rem;">
+          <img style="max-width:190px" class="card-img-top" src="/css/muestra.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">{{ notebook.name}}</h4>
+            <p class="card-text">{{ notebook.price | currency }}</p>
+            <a href="#" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+        
+	</div>
+</div>

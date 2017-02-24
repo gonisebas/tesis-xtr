@@ -1,6 +1,6 @@
 'use strict'
 
-var deliveryApp = angular.module('deliveryApp',['ui.router', 'ui.bootstrap', 'datePicker']);
+var deliveryApp = angular.module('deliveryApp',['ui.router', 'ui.bootstrap']);
 
 
 deliveryApp.run(function ($rootScope,$state,$log) {
@@ -9,13 +9,19 @@ deliveryApp.run(function ($rootScope,$state,$log) {
 
 deliveryApp.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/deliveries');
+    $urlRouterProvider.otherwise('/notebooks');
     
     $stateProvider
-        .state('deliveries', {
-            url: '/deliveries',
-            templateUrl: 'partials/deliveries.html',
+        .state('offers', {
+            url: '/notebooks',
+            templateUrl: 'partials/offers.html',
+            controller : 'OffersController',
+        })
+        .state('results', {
+            url: '/notebooks',
+            templateUrl: 'partials/search-results.html',
             controller : 'DeliveriesController',
+            params:{searchString:{}}
         })
         .state('delivery', {
         	abstract: true,

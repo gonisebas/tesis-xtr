@@ -115,3 +115,10 @@ body{
   border-color: #ddd #ddd #ddd transparent;
   *border-left-color: #ffffff;
 }
+
+
+
+
+.panel{
+  margin-bottom: 5px
+}

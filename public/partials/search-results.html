@@ -1,0 +1,34 @@
+<h2>Encontramos estos resultados</h2>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+	    <a class="navbar-brand" href="#">Filtrar:</a>
+	</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistema Operativo<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><input type="checkbox">Sin SO</li>
+            <li><input type="checkbox">Linux</li>
+            <li><input type="checkbox">Windows 7</li>
+            <li><input type="checkbox">Windows 10</li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Batería<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><input type="checkbox"><a href="#">3 celdas</a></li>
+            <li><input type="checkbox"><a href="#">4 celdas</a></li>
+            <li><input type="checkbox"><a href="#">6 celdas</a></li>
+            <li><input type="checkbox"><a href="#">Lithium</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div ng-include="'partials/notebooks-list.html'"></div>

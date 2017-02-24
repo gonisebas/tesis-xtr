@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Delivery Online</title>
+	<title>Notebooks : XTR Lideres en tecnologia</title>
 	<base href="/" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,14 +13,10 @@
 	<script type="text/javascript" src="angular.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="bootstrap/js/ui-bootstrap-tpls-0.14.3.js"></script>	
-
 	<script type="text/javascript" src="angular-ui-router.js"></script>
-	<script type="text/javascript" src="angular-datepicker/app/scripts/datePicker.js"></script>
-	<script type="text/javascript" src="angular-datepicker/app/scripts/datePickerUtils.js"></script>
+	<script type="text/javascript" src="underscore-min.js"></script>
 	
-
 	<script type="text/javascript" src="config.js"></script>
-	<script type="text/javascript" src="datos.js"></script>
 	<script type="text/javascript" src="filters/filters.js"></script>
 	<script type="text/javascript" src="factories/factories.js"></script>
 	<script type="text/javascript" src="controllers/controllers.js"></script>
@@ -56,9 +52,10 @@
 			</div>
 		</div>
 	</nav>
-<div date-picker></div>
+
 <div class="container" style=" margin-top: 70px;">
-	<div ui-view></div>
+	<div class="col-lg-3" ng-include="'partials/search-menu.html'"></div>
+	<div class="col-lg-9" ui-view></div>
 </div>
 
 

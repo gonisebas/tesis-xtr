@@ -1,0 +1,172 @@
+<div  id="accordion" class="panel-group" ng-controller="MenuController">
+
+	<!-- PRECIO -->
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapsePrecio" data-parent="#accordion">Precio</a>
+	         
+	        </h4>
+	      </div>
+	      <div id="collapsePrecio" class="panel-collapse collapse in">
+	       <b>Min</b><input id="ex2" type="number" class="span2" value="0"/> 
+	       <b>Max</b><input id="ex2" type="number" class="span2" value="49999"/> 
+	      </div>
+	    </div>
+
+	<!-- MARCA -->
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapseMarca" data-parent="#accordion">Marca</a>
+	        </h4>
+	      </div>
+	      <div id="collapseMarca" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Sony</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Bangho</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Lenovo</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+
+
+	<!-- MARCA -->
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapsePantalla" data-parent="#accordion">Tamaño de pantalla</a>
+	        </h4>
+	      </div>
+	      <div id="collapsePantalla" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" ng-model="searchParam.screen[0]" ng-true-value="'14'" name="screen" value="14">14"</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" ng-model="searchParam.screen[1]" ng-true-value="'15'" name="screen" value="15">15"</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" ng-model="searchParam.screen[2]" ng-true-value="'16'" value="16">16"</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+
+
+	<!-- MEMORIA -->
+
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapseMemoria" data-parent="#accordion">Memoria</a>
+	        </h4>
+	      </div>
+	      <div id="collapseMemoria" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">4Gb</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">6Gb</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">8Gb</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+
+
+	<!-- DISCO RIGIDO -->
+
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapseDisco" data-parent="#accordion">Disco rígido</a>
+	        </h4>
+	      </div>
+	      <div id="collapseDisco" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">512Gb</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">700Gb</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">1024Gb</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+
+	<!-- PROCESADOR -->
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapseProcesador" data-parent="#accordion">Procesador</a>
+	        </h4>
+	      </div>
+	      <div id="collapseProcesador" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Core i5</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Core i7</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">AMD</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+	
+
+	<!-- ESTADO -->
+	
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" href="#collapseEstado" data-parent="#accordion">Estado</a>
+	        </h4>
+	      </div>
+	      <div id="collapseEstado" class="panel-collapse collapse">
+	        <ul class="list-group">
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Nuevo de exhibición</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Nuevo</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Nuevo sin caja</label></div>
+	          </li>
+	          <li class="list-group-item">
+				<div class="checkbox"><label><input type="checkbox" value="">Usada</label></div>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+	
+
+	<div class="pull-right ng-scope"> 
+		<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
+		<button type="submit" class="btn btn-default ng-scope" ng-click="sendRequest()">Limpiar</button>
+	</div>
+
+</div>
+
+
+
+
+
+
+
