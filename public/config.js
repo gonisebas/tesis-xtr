@@ -21,7 +21,7 @@ deliveryApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/notebooks',
             templateUrl: 'partials/search-results.html',
             controller : 'DeliveriesController',
-            params:{searchString:{}}
+            params:{searchParam:{}}
         })
         .state('delivery', {
         	abstract: true,

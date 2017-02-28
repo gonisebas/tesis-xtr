@@ -3,14 +3,14 @@ deliveryApp.controller('MenuController', function($scope, $state) {
 	$scope.search = function(){
 		var parameters = {}
 		_.map($scope.searchParam, function(item,key){
-			if (key == 'screen'){
-				parameters.screen = new Array();
+			if (_.contains(['screen','ram','trademark', 'microFamily', 'hardDisk', 'state'], key)){
+				parameters[key] = new Array();
 				_.each(item, function(value){
-					parameters.screen.push(value);
+					parameters[key].push(value);
 				})
 			}
 		});
-		$state.go('results', {searchParam: parameters});
+		$state.go('results', {searchParam: parameters},{reload: true});
 	}
 	
 	$scope.searchParam = {};
@@ -28,13 +28,11 @@ deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 });
 
 
-
-
 deliveryApp.controller('DeliveriesController', function($scope, $stateParams, notebooksFactory) {
 
 	function init(){
-		var params = $stateParams.searchString;
-		notebooksFactory.getNotebooks().then(function(d) {
+		var params = $stateParams.searchParam;
+		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
 		  });
 	};

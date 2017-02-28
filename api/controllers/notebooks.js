@@ -25,16 +25,25 @@ exports.findById = function(req, res) {
 exports.find = function(req, res) {
 	var query = Notebook.find();
 
-	//trademark
-	var trademark = req.query.trademark;
-	if(trademark){
-		query = Array.isArray(trademark)?query.where("trademark").in(trademark): query.where("trademark").equals(trademark);
-	} 
+	buildWhereParam("trademark", query);
+	buildWhereParam("ram", query);
+	buildWhereParam("screen", query);
+	buildWhereParam("hardDisk", query);
+	buildWhereParam("state", query);
+	buildWhereParam("microFamily", query);
 
+	console.log(JSON.stringify(query));
 	query.exec(function(err, notebooks){
 		if(err) res.status(500).send(err.message);
 		res.status(200).jsonp(notebooks);
 	})
+
+	function buildWhereParam(field, query){
+		var values = req.query[field];
+		if(values){
+			query = Array.isArray(values)?query.where(field).in(values): query.where(field).equals(values);
+		}
+	}
 
 };
 
@@ -46,12 +55,20 @@ exports.addNotebook = function(req, res) {
 	var notebook = new Notebook({
 		name:    req.body.name,
 		screen: 	  req.body.screen,
-		micro:  req.body.microId,
 		price: req.body.price,
 		trademark: req.body.trademark,
 		ram: req.body.ram,
 		hardDisk: req.body.hardDisk,
 		state: req.body.state
+		/**
+		batery: String,
+    	webcam: Boolean,
+    	bluetooth: Boolean,
+    	operating_system: String,
+    	price: Number,
+    	microDescription: String,
+    	microFamily: String
+    	*/
 	});
 
 	notebook.save(function(err, notebook) {

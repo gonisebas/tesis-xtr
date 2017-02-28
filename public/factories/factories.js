@@ -18,8 +18,8 @@ deliveryApp.factory('ordersFactory', function(){
 
 deliveryApp.factory('notebooksFactory',function($http){
 	return{
-		getNotebooks: function(){
-			return $http.get('/api/notebooks').then(function (response) {
+		getNotebooks: function(params){
+			return $http.get('/api/notebooks', {params: params}).then(function (response) {
 				return response.data;
       		});
 		}
