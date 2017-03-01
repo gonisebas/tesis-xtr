@@ -1,4 +1,4 @@
-<div  id="accordion" class="panel-group" ng-controller="MenuController">
+<form  id="accordion" class="panel-group" ng-controller="MenuController">
 
 	<!-- PRECIO -->
 		<div class="panel panel-default">
@@ -23,7 +23,7 @@
 	      </div>
 	      <div id="collapseMarca" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="trademark in ['Sony', 'Bangho', 'Lenovo', 'Asus'] track by $index">
+	          <li class="list-group-item" ng-repeat="trademark in trademarks track by $index">
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}}</label>
 				</div>
@@ -42,7 +42,7 @@
 	      </div>
 	      <div id="collapsePantalla" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="screen in [14, 15, 16] track by $index">
+	          <li class="list-group-item" ng-repeat="screen in screens track by $index">
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" name="screen" value="{{screen}}">{{screen}}"</label>
 				</div>
@@ -62,7 +62,7 @@
 	      </div>
 	      <div id="collapseMemoria" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="ram in [4 , 6, 8] track by $index">
+	          <li class="list-group-item" ng-repeat="ram in rams track by $index">
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb</label>
 				</div>
@@ -82,7 +82,7 @@
 	      </div>
 	      <div id="collapseDisco" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="disk in [500, 700, 800, 1024] track by $index">
+	          <li class="list-group-item" ng-repeat="disk in hardDisks track by $index">
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB</label>
 				</div>
@@ -100,7 +100,7 @@
 	      </div>
 	      <div id="collapseProcesador" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="micro in ['Core i5', 'Core i7', 'AMD'] track by $index">
+	          <li class="list-group-item" ng-repeat="micro in microFamilies track by $index">
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" name="microFamily" value="{{micro}}">{{micro}}</label>
 				</div>
@@ -139,10 +139,10 @@
 
 	<div class="pull-right ng-scope"> 
 		<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
-		<button type="submit" class="btn btn-default ng-scope" ng-click="sendRequest()">Limpiar</button>
+		<button type="reset" class="btn btn-default ng-scope">Limpiar</button>
 	</div>
 
-</div>
+</form>
 
 
 

@@ -1,3 +1,5 @@
+
+
 <div class="filter components" style="display:inline-block">
     <div class="col-lg-3 form-group">
       <label class="control-label col-sm-6" for="email">WebCam:</label>
@@ -43,19 +45,15 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistema Operativo<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><input type="checkbox">Sin SO</li>
-            <li><input type="checkbox">Linux</li>
-            <li><input type="checkbox">Windows 7</li>
-            <li><input type="checkbox">Windows 10</li>
+            <li ng-repeat="os in operating_systems track by $index">
+              <input type="checkbox" ng-true-value="'{{os}}'" name="operating_system" ng-model="filterOperatingSystem[$index]">{{os}}</li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Batería<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><input type="checkbox"><a href="#">3 celdas</a></li>
-            <li><input type="checkbox"><a href="#">4 celdas</a></li>
-            <li><input type="checkbox"><a href="#">6 celdas</a></li>
-            <li><input type="checkbox"><a href="#">Lithium</a></li>
+            <li ng-repeat="batery in bateries track by $index">
+              <input type="checkbox" ng-true-value="'{{batery}}'" name="batery" ng-model="filterBatery[$index]"><a href="#">{{batery}}</a></li>
           </ul>
         </li>
       </ul>

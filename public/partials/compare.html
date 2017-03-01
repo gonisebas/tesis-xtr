@@ -1,0 +1,15 @@
+<table class="table table-bordered table-hover">
+	<thead><tr><th></th><th>Producto</th><th>Marca</th><th>Memoria</th><th>Pantalla</th><th>Procesador</th><th>Disco rígido</th><th>Precio</th></tr></thead>
+	<tbody>
+		<tr ng-repeat="item in comparationItems">
+			<td><a ng-click="removeToCompare(item._id)">[x]</a></td>
+			<td>{{item.name}}</td>
+			<td>{{item.trademark}}</td>
+			<td>{{item.ram}}Gb</td>
+			<td>{{item.screen}}"</td>
+			<td>{{item.microDescription}}</td>
+			<td>{{item.hardDisk}}Gb</td>
+			<td>{{item.price | currency}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,4 +1,47 @@
-deliveryApp.controller('MenuController', function($scope, $state) {
+deliveryApp.controller('HomeController', function($scope, $state, notebooksFactory) {
+
+	function init(){
+		notebooksFactory.getNotebooks().then(function(d) {
+			$scope.hardDisks = _.pluck(d, 'hardDisk');
+			$scope.trademarks = _.pluck(d, 'trademark');
+			$scope.screens = _.pluck(d, 'screen');
+			$scope.rams = _.uniq(_.pluck(d, 'ram'));
+			$scope.microFamilies = _.pluck(d, 'microFamily');
+			$scope.states = _.pluck(d, 'state');
+		});		
+	}
+
+	$scope.addToCompare = function(newItem){
+		if (! _.find($scope.comparationItems, function(item){return item._id == newItem._id})){
+			$scope.comparationItems.push(newItem);
+		}
+	}
+
+	$scope.removeToCompare = function(uuid){
+		$scope.comparationItems = _.filter($scope.comparationItems, function(item){
+			return item._id != uuid
+		});
+	}
+
+	$scope.goToCompare = function(){
+		$state.go('compare');
+	}
+
+
+	$scope.filterOperatingSystem = new Array();
+	$scope.filterBatery = new Array();
+
+	$scope.comparationItems = new Array();
+
+	init();
+	
+});
+
+deliveryApp.controller('MenuController', function($scope, $state, notebooksFactory) {
+
+	function init(){
+
+	}
 
 	$scope.search = function(){
 		var parameters = {}
@@ -14,6 +57,8 @@ deliveryApp.controller('MenuController', function($scope, $state) {
 	}
 	
 	$scope.searchParam = {};
+
+	init();
 });
 
 deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
@@ -34,6 +79,8 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 		var params = $stateParams.searchParam;
 		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
+		    $scope.operating_systems = _.pluck(d, 'operating_system');
+			$scope.bateries = _.pluck(d, 'batery');
 		  });
 	};
 

@@ -2,7 +2,7 @@
 <!-- Listado de deliveries -->
 <div class="container-fluid" style="display: flex;flex-direction: row; flex-wrap: wrap;">
 
-	<div ng-repeat="notebook in notebooks" class="col-lg-4">
+	<div ng-repeat="notebook in notebooks | hasOperatingSystem:filterOperatingSystem | hasBatery:filterBatery " class="col-lg-4">
 
 
         <div class="card" style="width: 20rem;">
@@ -16,6 +16,7 @@
           <div class="card-block">
             <h4 class="card-title">{{ notebook.name}}</h4>
             <p class="card-text">{{ notebook.price | currency }}</p>
+            <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar
             <a href="#" class="btn btn-primary">Comprar</a>
           </div>
         </div>

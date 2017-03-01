@@ -23,6 +23,10 @@ deliveryApp.config(function($stateProvider, $urlRouterProvider) {
             controller : 'DeliveriesController',
             params:{searchParam:{}}
         })
+        .state('compare', {
+            url: '/comparar',
+            templateUrl: 'partials/compare.html'
+        })
         .state('delivery', {
         	abstract: true,
         	url: '/delivery/:deliveryId',
