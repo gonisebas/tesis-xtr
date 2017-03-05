@@ -14,7 +14,8 @@ module.exports = mongoose.model('Notebook', {
     	operating_system: String,
     	price: Number,
     	microDescription: String,
-    	microFamily: String
+    	microFamily: String,
+    	code: Number
 	});
 
 

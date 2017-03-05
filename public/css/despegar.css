@@ -122,3 +122,15 @@ body{
 .panel{
   margin-bottom: 5px
 }
+
+
+.attributes-sumary  div{
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+
+.menu .checkbox {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

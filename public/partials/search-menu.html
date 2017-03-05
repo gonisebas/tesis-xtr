@@ -1,4 +1,4 @@
-<form  id="accordion" class="panel-group" ng-controller="MenuController">
+<form  id="accordion" class="panel-group menu" ng-controller="MenuController">
 
 	<!-- PRECIO -->
 		<div class="panel panel-default">
@@ -9,8 +9,8 @@
 	        </h4>
 	      </div>
 	      <div id="collapsePrecio" class="panel-collapse collapse in">
-	       <b>Min</b><input id="ex2" type="number" class="span2" value="0"/> 
-	       <b>Max</b><input id="ex2" type="number" class="span2" value="49999"/> 
+	       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
+	       <b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
 	      </div>
 	    </div>
 
@@ -120,18 +120,11 @@
 	      </div>
 	      <div id="collapseEstado" class="panel-collapse collapse">
 	        <ul class="list-group">
-	          <li class="list-group-item">
-				<div class="checkbox"><label><input type="checkbox" value="">Nuevo de exhibición</label></div>
-	          </li>
-	          <li class="list-group-item">
-				<div class="checkbox"><label><input type="checkbox" value="">Nuevo</label></div>
-	          </li>
-	          <li class="list-group-item">
-				<div class="checkbox"><label><input type="checkbox" value="">Nuevo sin caja</label></div>
-	          </li>
-	          <li class="list-group-item">
-				<div class="checkbox"><label><input type="checkbox" value="">Usada</label></div>
-	          </li>
+				<li class="list-group-item" ng-repeat="state in states track by $index">
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" name="state" value="{{state}}">{{state}}</label>
+					</div>
+		        </li>
 	        </ul>
 	      </div>
 	    </div>

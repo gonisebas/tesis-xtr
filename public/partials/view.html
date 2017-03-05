@@ -1,0 +1,21 @@
+
+
+
+<div class="container">
+<div class="card">
+  <img class="col-lg-4 card-img-left" src="/css/images/{{notebook.code}}.jpg" alt="Card image cap">
+  <div class="col-lg-8 card-block">
+    <h4 class="card-title">{{notebook.name}}</h4>
+    <ul class="card-text">
+		<li>Procesador: {{notebook.microDescription}}</li>
+		<li>Marca: {{notebook.trademark}}</li>
+		<li>Sistema: {{notebook.operating_system}}</li>
+		<li>Batería: {{notebook.batery}}</li>
+		<li>Memoria: {{notebook.ram}} Gb</li>
+		<li>Estado: {{notebook.state}}</li>
+    </ul>
+    <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>

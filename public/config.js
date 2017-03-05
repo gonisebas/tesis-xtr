@@ -7,25 +7,21 @@ deliveryApp.run(function ($rootScope,$state,$log) {
 	$rootScope.$state = $state;
 });
 
-deliveryApp.config(function($stateProvider, $urlRouterProvider) {
+deliveryApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     
-    $urlRouterProvider.otherwise('/notebooks');
+    $urlRouterProvider.otherwise('/xtr/notebooks');
     
     $stateProvider
         .state('offers', {
-            url: '/notebooks',
+            url: '/xtr/notebooks',
             templateUrl: 'partials/offers.html',
             controller : 'OffersController',
         })
         .state('results', {
-            url: '/notebooks',
+            url: '/xtr/busqueda',
             templateUrl: 'partials/search-results.html',
             controller : 'DeliveriesController',
             params:{searchParam:{}}
-        })
-        .state('compare', {
-            url: '/comparar',
-            templateUrl: 'partials/compare.html'
         })
         .state('delivery', {
         	abstract: true,
@@ -63,5 +59,5 @@ deliveryApp.config(function($stateProvider, $urlRouterProvider) {
 	        	}
 	        }
         });
-        
+        $locationProvider.html5Mode(true);        
 });

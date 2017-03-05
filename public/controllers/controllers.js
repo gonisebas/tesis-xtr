@@ -1,13 +1,21 @@
-deliveryApp.controller('HomeController', function($scope, $state, notebooksFactory) {
+
+deliveryApp.controller('ViewController', function($scope, notebooksFactory, notebookId) {
+	notebooksFactory.getNotebook(notebookId).then(function(d) {
+    	$scope.notebook  = d;
+	});
+});
+
+
+deliveryApp.controller('HomeController', function($scope, $state, $uibModal,notebooksFactory) {
 
 	function init(){
 		notebooksFactory.getNotebooks().then(function(d) {
-			$scope.hardDisks = _.pluck(d, 'hardDisk');
-			$scope.trademarks = _.pluck(d, 'trademark');
-			$scope.screens = _.pluck(d, 'screen');
+			$scope.hardDisks = _.uniq(_.pluck(d, 'hardDisk'));
+			$scope.trademarks = _.uniq(_.pluck(d, 'trademark'));
+			$scope.screens = _.uniq(_.pluck(d, 'screen'));
 			$scope.rams = _.uniq(_.pluck(d, 'ram'));
-			$scope.microFamilies = _.pluck(d, 'microFamily');
-			$scope.states = _.pluck(d, 'state');
+			$scope.microFamilies = _.uniq(_.pluck(d, 'microFamily'));
+			$scope.states = _.uniq(_.pluck(d, 'state'));
 		});		
 	}
 
@@ -23,10 +31,28 @@ deliveryApp.controller('HomeController', function($scope, $state, notebooksFacto
 		});
 	}
 
+
 	$scope.goToCompare = function(){
-		$state.go('compare');
+		var modalInstance = $uibModal.open({
+			templateUrl: 'partials/compare.html',
+			controller: 'ModalInstanceCtrl',
+			scope:$scope
+		});
 	}
 
+	$scope.view = function(notebookId){
+		//$state.go('view',{notebookId: notebookId});
+		var modalInstance = $uibModal.open({
+			templateUrl: 'partials/view.html',
+			controller: 'ViewController',
+			scope:$scope,
+			resolve: {
+				notebookId: function(){
+					return notebookId;
+				}
+			}
+		});
+	}
 
 	$scope.filterOperatingSystem = new Array();
 	$scope.filterBatery = new Array();
@@ -35,6 +61,14 @@ deliveryApp.controller('HomeController', function($scope, $state, notebooksFacto
 
 	init();
 	
+});
+
+
+deliveryApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+
+  $scope.close = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });
 
 deliveryApp.controller('MenuController', function($scope, $state, notebooksFactory) {
@@ -51,6 +85,8 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 				_.each(item, function(value){
 					parameters[key].push(value);
 				})
+			}else{
+				parameters[key] = item;
 			}
 		});
 		$state.go('results', {searchParam: parameters},{reload: true});
@@ -79,8 +115,8 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 		var params = $stateParams.searchParam;
 		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
-		    $scope.operating_systems = _.pluck(d, 'operating_system');
-			$scope.bateries = _.pluck(d, 'batery');
+		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));
+			$scope.bateries = _.uniq(_.pluck(d, 'batery'));
 		  });
 	};
 
@@ -122,16 +158,6 @@ deliveryApp.controller('OrdersController', function($scope, $stateParams, $filte
 	}
 
 	init();
-});
-
-deliveryApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, customer, orders) {
-
-  $scope.customer = customer;
-  $scope.orders = orders;  
-
-  $scope.close = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
 });
 
 deliveryApp.controller('DeliveryMenuController', function($scope, $stateParams, ordersFactory) {

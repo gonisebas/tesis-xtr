@@ -1,25 +1,32 @@
     
-<!-- Listado de deliveries -->
+<div>Ordenar por: 
+  <select ng-model="sortByField" ng-init="price">
+    <option value="price" selected>Precio</option>
+    <option value="trademark">Marca</option>
+    <option value="ram">Memoria</option>
+  </select>
 <div class="container-fluid" style="display: flex;flex-direction: row; flex-wrap: wrap;">
 
-	<div ng-repeat="notebook in notebooks | hasOperatingSystem:filterOperatingSystem | hasBatery:filterBatery " class="col-lg-4">
+	<div ng-repeat="notebook in notebooks | hasOperatingSystem:filterOperatingSystem | hasBatery:filterBatery | orderBy: sortByField" class="col-lg-4">
 
 
-        <div class="card" style="width: 20rem;">
+        <div class="card" style="width: 20rem;" ng-click="view(notebook._id)">
           <div class="attributes-sumary">
-            <div class="col-lg-3">{{notebook.screen}}"</div>
             <div class="col-lg-3">{{notebook.trademark}}</div>
+            <div class="col-lg-3">{{notebook.screen}}"</div>
             <div class="col-lg-3">{{notebook.microFamily}}</div>
             <div class="col-lg-3">{{notebook.ram}}GB</div>
           </div>
-          <img style="max-width:190px" class="card-img-top" src="/css/muestra.jpg" alt="Card image cap">
+          <img style="max-width:190px" class="card-img-top" src="/css/images/{{notebook.code}}.jpg" alt="Card image cap">
           <div class="card-block">
             <h4 class="card-title">{{ notebook.name}}</h4>
             <p class="card-text">{{ notebook.price | currency }}</p>
-            <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar
-            <a href="#" class="btn btn-primary">Comprar</a>
+            
           </div>
         </div>
+        <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar
+        <a href="#" class="btn btn-primary">Comprar</a>
+        
         
 	</div>
 </div>

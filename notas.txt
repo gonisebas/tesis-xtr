@@ -1,8 +1,4 @@
-Filtrar por precio
 Bug attribute=false cuando se deselecciona un valor
-
-
-Los filtros de la izquierda tipo acordeon se abre uno a la vez (al expandir uno se contraen los demás)
 
 *** Filtros (para después de buscar) ***
 Lector de huellas | Bluetooth | Webcam | HDMI | Touch Screen

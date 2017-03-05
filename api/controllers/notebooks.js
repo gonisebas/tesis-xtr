@@ -14,7 +14,7 @@ exports.findAllNotebooks = function(req, res) {
 
 //GET - Return a Notebook with specified ID
 exports.findById = function(req, res) {
-	Notebook.find({microId:1}, function(err, notebook) {
+	Notebook.findById(req.params.id, function(err, notebook) {
     if(err) res.status(500).send(err.message);
 
     console.log('GET /notebooks/' + req.params.id);
@@ -31,6 +31,16 @@ exports.find = function(req, res) {
 	buildWhereParam("hardDisk", query);
 	buildWhereParam("state", query);
 	buildWhereParam("microFamily", query);
+
+	var minPrice = req.query['minPrice'];
+	if (minPrice){
+		query = query.where('price').gt(minPrice);
+	}
+
+	var maxPrice = req.query['maxPrice'];
+	if (maxPrice){
+		query = query.where('price').lt(maxPrice);
+	}
 
 	console.log(JSON.stringify(query));
 	query.exec(function(err, notebooks){

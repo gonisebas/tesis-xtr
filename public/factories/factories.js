@@ -22,6 +22,11 @@ deliveryApp.factory('notebooksFactory',function($http){
 			return $http.get('/api/notebooks', {params: params}).then(function (response) {
 				return response.data;
       		});
+		},
+		getNotebook: function(id){
+				return $http.get('/api/notebooks/'+id).then(function (response) {
+					return response.data;
+	      		});
+			}
 		}
-	}
 });
