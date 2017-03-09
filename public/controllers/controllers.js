@@ -40,9 +40,11 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 		});
 	}
 
+	var modalInstance;
+	
 	$scope.view = function(notebookId){
 		//$state.go('view',{notebookId: notebookId});
-		var modalInstance = $uibModal.open({
+		modalInstance = $uibModal.open({
 			templateUrl: 'partials/view.html',
 			controller: 'ViewController',
 			scope:$scope,
@@ -53,6 +55,10 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 			}
 		});
 	}
+
+	$scope.cancel = function () {
+	    modalInstance.dismiss('cancel');
+	};
 
 	$scope.filterOperatingSystem = new Array();
 	$scope.filterBatery = new Array();

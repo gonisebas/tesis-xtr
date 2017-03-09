@@ -23,6 +23,11 @@ app.use(express.static('public'));
 app.use(express.static('xtr'));
 app.use(express.static('node_modules'));
 
+var path = require('path');
+app.get('*', function (req, res){
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+});
+
 // Start server
 app.listen(3000, function() {
   console.log("Node server running on http://localhost:3000");
