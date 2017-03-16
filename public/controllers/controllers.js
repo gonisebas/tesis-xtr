@@ -9,6 +9,11 @@ deliveryApp.controller('ViewController', function($scope, notebooksFactory, note
 deliveryApp.controller('HomeController', function($scope, $state, $uibModal,notebooksFactory) {
 
 	function init(){
+ 		$scope.filterTouchscreen = 'false';
+ 		$scope.filterBluetooth = 'false';
+ 		$scope.filterWebcam = 'false';
+ 		$scope.filterHdmi = 'false';
+
 		notebooksFactory.getNotebooks().then(function(d) {
 			$scope.hardDisks = _.uniq(_.pluck(d, 'hardDisk'));
 			$scope.trademarks = _.uniq(_.pluck(d, 'trademark'));
@@ -80,9 +85,13 @@ deliveryApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance)
 deliveryApp.controller('MenuController', function($scope, $state, notebooksFactory) {
 
 	function init(){
-
+		$scope.searchParam = {};
 	}
 
+	$scope.reset = function(){
+		$scope.searchParam = {};	
+	}
+ 
 	$scope.search = function(){
 		var parameters = {}
 		_.map($scope.searchParam, function(item,key){
@@ -98,8 +107,6 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 		$state.go('results', {searchParam: parameters},{reload: true});
 	}
 	
-	$scope.searchParam = {};
-
 	init();
 });
 
@@ -119,6 +126,7 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 
 	function init(){
 		var params = $stateParams.searchParam;
+		$scope.sortByField = 'price';
 		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
 		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));

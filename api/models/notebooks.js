@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Notebook', {
 		name: String ,
-		screen: Number,
+		screen: String,
 		price: Number,
 		trademark: String,
 		ram: Number,

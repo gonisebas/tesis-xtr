@@ -1,4 +1,5 @@
-Bug attribute=false cuando se deselecciona un valor
+Cambiar header por el de xtr
+
 
 *** Filtros (para después de buscar) ***
 Lector de huellas | Bluetooth | Webcam | HDMI | Touch Screen

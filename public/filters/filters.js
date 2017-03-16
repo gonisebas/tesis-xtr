@@ -14,12 +14,23 @@ deliveryApp.filter('totalSumPriceQty', function () {
     }
 });
 
-deliveryApp.filter('hasOperatingSystem', function() {
-  return function(items, values) {
+deliveryApp.filter('hasMultipleAttr', function() {
+  return function(items, values, property) {
+    return multipleValueFilter(items, values, property);
+  }
+});
+
+function multipleValueFilter(items, values, property) {
+    var list = new Array();
+    angular.forEach(values, function(v){
+        if (v && (v != '')){
+            list.push(v);
+        }
+    })
     var filtered = [];
     angular.forEach(items, function(el) {
-        if (values && (values.length > 0)){
-            if (_.contains(values, el.operating_system)){
+        if (list && (list.length > 0)){
+            if (_.contains(list, el[property])){
                 filtered.push(el);
             }
         }else{
@@ -29,15 +40,19 @@ deliveryApp.filter('hasOperatingSystem', function() {
     });
     return filtered;
   }
+
+deliveryApp.filter('hasSingleAttr', function() {
+  return function(items, values, property) {
+    return singleValueFilter(items, values, property)
+  }
 });
 
 
-deliveryApp.filter('hasBatery', function() {
-  return function(items, values) {
+function singleValueFilter(items, values, property) {
     var filtered = [];
     angular.forEach(items, function(el) {
-        if (values && (values.length > 0)){
-            if (_.contains(values, el.batery)){
+        if (values == "true"){
+            if (el[property]){
                 filtered.push(el);
             }
         }else{
@@ -46,5 +61,4 @@ deliveryApp.filter('hasBatery', function() {
         
     });
     return filtered;
-  }
-});
+}

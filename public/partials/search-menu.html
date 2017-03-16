@@ -9,8 +9,12 @@
 	        </h4>
 	      </div>
 	      <div id="collapsePrecio" class="panel-collapse collapse in">
-	       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
-	       <b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
+	      	<div class="col-lg-6">
+		       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
+		   	</div>
+		   	<div class="col-lg-6">
+	       		<b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
+	       	</div>
 	      </div>
 	    </div>
 
@@ -64,7 +68,7 @@
 	        <ul class="list-group">
 	          <li class="list-group-item" ng-repeat="ram in rams track by $index">
 				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb</label>
+					<label><input type="checkbox" ng-model="searchParam.ram[$index]" ng-false-value="''" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb</label>
 				</div>
 	          </li>
 	        </ul>
@@ -132,7 +136,7 @@
 
 	<div class="pull-right ng-scope"> 
 		<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
-		<button type="reset" class="btn btn-default ng-scope">Limpiar</button>
+		<button ng-click="reset()" class="btn btn-default ng-scope">Limpiar</button>
 	</div>
 
 </form>

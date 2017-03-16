@@ -1,43 +1,4 @@
 
-
-<div class="filter components" style="display:inline-block">
-    <div class="col-lg-3 form-group">
-      <label class="control-label col-sm-6" for="email">WebCam:</label>
-      <div class="col-sm-6">
-        <select>
-          <option>Me interesa</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-lg-3 form-group">
-      <label class="control-label col-sm-6" for="email">HDMI:</label>
-      <div class="col-sm-6">
-        <select>
-          <option>Me interesa</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-lg-3 form-group">
-      <label class="control-label col-sm-6" for="email">Pantalla táctil:</label>
-      <div class="col-sm-6">
-        <select>
-          <option>Me interesa</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-lg-3 form-group">
-      <label class="control-label col-sm-6" for="email">Bluetooth:</label>
-      <div class="col-sm-6">
-        <select>
-          <option>Me interesa</option>
-        </select>
-      </div>
-    </div>
-</div>
-
-<div class=""></div>
-<div class=""></div>
-
 <nav class="navbar navbar-default">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -46,19 +7,50 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistema Operativo<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li ng-repeat="os in operating_systems track by $index">
-              <input type="checkbox" ng-true-value="'{{os}}'" name="operating_system" ng-model="filterOperatingSystem[$index]">{{os}}</li>
+              <input type="checkbox" ng-true-value="'{{os}}'" ng-false-value="''" name="operating_system" ng-model="filterOperatingSystem[$index]">{{os}}</li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Batería<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li ng-repeat="batery in bateries track by $index">
-              <input type="checkbox" ng-true-value="'{{batery}}'" name="batery" ng-model="filterBatery[$index]"><a href="#">{{batery}}</a></li>
+              <input type="checkbox" ng-true-value="'{{batery}}'" ng-false-value="''" name="batery" ng-model="filterBatery[$index]"><a href="#">{{batery}}</a></li>
           </ul>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<hr>
+<div class="filter components" style="display:inline-block">
+    <div class="col-lg-3 form-group">
+      <label class="control-label " for="email">WebCam:</label>
+      <select ng-model="filterWebcam">
+        <option value="false" select>Deseable</option>
+        <option value="true">Imprescindible</option>
+      </select>
+    </div>
+    <div class="col-lg-3 form-group">
+      <label class="control-label" for="email">HDMI:</label>
+      <select ng-model="filterHdmi">
+        <option value="false" select>Deseable</option>
+        <option value="true">Imprescindible</option>
+      </select>
+    </div>
+    <div class="col-lg-3 form-group">
+      <label class="control-label" for="email">Pantalla táctil:</label>
+      <select ng-model="filterTouchscreen">
+        <option value="false" select>Deseable</option>
+        <option value="true">Imprescindible</option>
+      </select>
+    </div>
+    <div class="col-lg-3 form-group">
+      <label class="control-label" for="email">Bluetooth:</label>
+      <select ng-model="filterBluetooth">
+        <option value="false" select>Deseable</option>
+        <option value="true">Imprescindible</option>
+      </select>
+    </div>
+</div>
+<hr>
 <div ng-include="'partials/notebooks-list.html'"></div>
