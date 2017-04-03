@@ -1,149 +1,164 @@
-<form  id="accordion" class="panel-group menu" ng-controller="MenuController">
+<div ng-controller="MenuController">
+	<form  id="accordion" class="panel-group menu">
 
-	<!-- PRECIO -->
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapsePrecio" data-parent="#accordion">Precio</a>
-	         
-	        </h4>
-	      </div>
-	      <div id="collapsePrecio" class="panel-collapse collapse in">
-	      	<div class="col-lg-6">
-		       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
-		   	</div>
-		   	<div class="col-lg-6">
-	       		<b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
-	       	</div>
-	      </div>
-	    </div>
+		<!-- PRECIO -->
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapsePrecio" data-parent="#accordion">Precio</a>
+		         
+		        </h4>
+		      </div>
+		      <div id="collapsePrecio" class="panel-collapse collapse in">
+		      	<div class="col-lg-6">
+			       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
+			   	</div>
+			   	<div class="col-lg-6">
+		       		<b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
+		       	</div>
+		      </div>
+		    </div>
 
-	<!-- MARCA -->
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapseMarca" data-parent="#accordion">Marca</a>
-	        </h4>
-	      </div>
-	      <div id="collapseMarca" class="panel-collapse collapse">
-	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="trademark in trademarks track by $index">
-				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}}</label>
-				</div>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-
-
-	<!-- MARCA -->
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapsePantalla" data-parent="#accordion">Tamaño de pantalla</a>
-	        </h4>
-	      </div>
-	      <div id="collapsePantalla" class="panel-collapse collapse">
-	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="screen in screens track by $index">
-				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" name="screen" value="{{screen}}">{{screen}}"</label>
-				</div>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-
-
-	<!-- MEMORIA -->
-
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapseMemoria" data-parent="#accordion">Memoria</a>
-	        </h4>
-	      </div>
-	      <div id="collapseMemoria" class="panel-collapse collapse">
-	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="ram in rams track by $index">
-				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.ram[$index]" ng-false-value="''" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb</label>
-				</div>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-
-
-	<!-- DISCO RIGIDO -->
-
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapseDisco" data-parent="#accordion">Disco rígido</a>
-	        </h4>
-	      </div>
-	      <div id="collapseDisco" class="panel-collapse collapse">
-	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="disk in hardDisks track by $index">
-				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB</label>
-				</div>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-
-	<!-- PROCESADOR -->
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapseProcesador" data-parent="#accordion">Procesador</a>
-	        </h4>
-	      </div>
-	      <div id="collapseProcesador" class="panel-collapse collapse">
-	        <ul class="list-group">
-	          <li class="list-group-item" ng-repeat="micro in microFamilies track by $index">
-				<div class="checkbox">
-					<label><input type="checkbox" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" name="microFamily" value="{{micro}}">{{micro}}</label>
-				</div>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-	
-
-	<!-- ESTADO -->
-	
-		<div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h4 class="panel-title">
-	          <a data-toggle="collapse" href="#collapseEstado" data-parent="#accordion">Estado</a>
-	        </h4>
-	      </div>
-	      <div id="collapseEstado" class="panel-collapse collapse">
-	        <ul class="list-group">
-				<li class="list-group-item" ng-repeat="state in states track by $index">
+		<!-- MARCA -->
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapseMarca" data-parent="#accordion">Marca</a>
+		        </h4>
+		      </div>
+		      <div id="collapseMarca" class="panel-collapse collapse">
+		        <ul class="list-group">
+		          <li class="list-group-item" ng-repeat="trademark in trademarks track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" name="state" value="{{state}}">{{state}}</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} ({{propertiesCounter['trademark'][trademark]}})</label>
 					</div>
-		        </li>
-	        </ul>
-	      </div>
-	    </div>
-	
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
 
-	<div class="pull-right ng-scope"> 
-		<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
-		<button ng-click="reset()" class="btn btn-default ng-scope">Limpiar</button>
+
+		<!-- MARCA -->
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapsePantalla" data-parent="#accordion">Tamaño de pantalla</a>
+		        </h4>
+		      </div>
+		      <div id="collapsePantalla" class="panel-collapse collapse">
+		        <ul class="list-group">
+		          <li class="list-group-item" ng-repeat="screen in screens track by $index">
+					<div class="checkbox">
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" name="screen" value="{{screen}}">{{screen}}" ({{propertiesCounter['screen'][screen]}})</label>
+					</div>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+
+
+		<!-- MEMORIA -->
+
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapseMemoria" data-parent="#accordion">Memoria</a>
+		        </h4>
+		      </div>
+		      <div id="collapseMemoria" class="panel-collapse collapse">
+		        <ul class="list-group">
+		          <li class="list-group-item" ng-repeat="ram in rams track by $index">
+					<div class="checkbox">
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.ram[$index]" ng-false-value="''" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb ({{propertiesCounter['ram'][ram]}})</label>
+					</div>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+
+
+		<!-- DISCO RIGIDO -->
+
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapseDisco" data-parent="#accordion">Disco rígido</a>
+		        </h4>
+		      </div>
+		      <div id="collapseDisco" class="panel-collapse collapse">
+		        <ul class="list-group">
+		          <li class="list-group-item" ng-repeat="disk in hardDisks track by $index">
+					<div class="checkbox">
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
+					</div>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+
+		<!-- PROCESADOR -->
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapseProcesador" data-parent="#accordion">Procesador</a>
+		        </h4>
+		      </div>
+		      <div id="collapseProcesador" class="panel-collapse collapse">
+		        <ul class="list-group">
+		          <li class="list-group-item" ng-repeat="micro in microFamilies track by $index">
+					<div class="checkbox">
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
+					</div>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+		
+
+		<!-- ESTADO -->
+		
+			<div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" href="#collapseEstado" data-parent="#accordion">Estado</a>
+		        </h4>
+		      </div>
+		      <div id="collapseEstado" class="panel-collapse collapse">
+		        <ul class="list-group">
+					<li class="list-group-item" ng-repeat="state in states track by $index">
+						<div class="checkbox">
+							<label><input type="checkbox" ng-change="search()" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" name="state" value="{{state}}">{{state}} ({{propertiesCounter['state'][state]}})</label>
+						</div>
+			        </li>
+		        </ul>
+		      </div>
+		    </div>
+		
+	<!--
+		<div class="pull-right ng-scope"> 
+			<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
+			<button ng-click="reset()" class="btn btn-default ng-scope">Limpiar</button>
+		</div>
+	-->
+
+
+
+	</form>
+
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapseFilters">Filtrado por:</a>
+         
+        </h4>
+      </div>
+      <div id="collapseFilters" class="panel-collapse collapse in tokenfield">
+
+      	<div class="token" ng-repeat="filter in appliedFilters">
+      		<span class="token-label" style="max-width: 770px;">{{filter}}</span>
+      		<a class="close" ng-click="removeThisFilter()" tabindex="-1">×</a>
+      	</div>
+      </div>
 	</div>
 
-</form>
-
-
-
-
-
-
-
+</div>

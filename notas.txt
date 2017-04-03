@@ -1,3 +1,29 @@
+Dejar siempre expandido "filtrado por"
+Al quitar el filtro replicar en el acordeon y vice-versa
+
+Agregar filtros aplicados en "Filtrado por:"
+
+
+
+1) Ver cómo relajar un filtro para que puedan aparecer más opciones.
+
+
+2) Enumerar patrones de interacción web que hay en la mayoría de los sitios y que utilizamos nosotros → buenas prácticas → Agregar capitulo de nuevas interfaces
+
+3) Estrategias de interacciones que nosotros proponemos. Mejoras nuestras que no son las clásicas. Asignándoles un título, un problema y una solución.
+
+4)De los filtros obligatorios quedamos en que si actúan como filtros y lo deseable establece orden.
+
+5)Ver nuevo algoritmo de ordenamiento, relacionado con fuzzy search.
+
+6)Darle una idea  al usuario de cuánto se va a reducir cuando se aplica un filtro.
+
+
+
+
+
+
+
 Cambiar header por el de xtr
 
 

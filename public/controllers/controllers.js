@@ -15,12 +15,37 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
  		$scope.filterHdmi = 'false';
 
 		notebooksFactory.getNotebooks().then(function(d) {
+			var quantities = new Object();
 			$scope.hardDisks = _.uniq(_.pluck(d, 'hardDisk'));
+			propertiesCount(d,quantities, 'hardDisk');
+
 			$scope.trademarks = _.uniq(_.pluck(d, 'trademark'));
+			propertiesCount(d, quantities, 'trademark');
+
 			$scope.screens = _.uniq(_.pluck(d, 'screen'));
+			propertiesCount(d, quantities, 'screen');
+
 			$scope.rams = _.uniq(_.pluck(d, 'ram'));
+			propertiesCount(d, quantities, 'ram');
+
 			$scope.microFamilies = _.uniq(_.pluck(d, 'microFamily'));
+			propertiesCount(d, quantities, 'microFamily');
+
 			$scope.states = _.uniq(_.pluck(d, 'state'));
+			propertiesCount(d, quantities, 'state');
+
+			$scope.propertiesCounter = quantities;
+		});		
+	}
+
+	function propertiesCount(d, quantities, property){
+		quantities[property] = new Object();
+		_.each(d, function(notebook){
+			if (!quantities[property][notebook[property]]){
+				quantities[property][notebook[property]]=0;
+			}
+			quantities[property][notebook[property]]++;
+
 		});		
 	}
 
@@ -84,8 +109,17 @@ deliveryApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance)
 
 deliveryApp.controller('MenuController', function($scope, $state, notebooksFactory) {
 
+	var propertyDecorator = {};
+	propertyDecorator['screen'] = '{0}\"';
+	propertyDecorator['ram'] = '{0}Gb';
+	propertyDecorator['trademark'] = '{0}';
+	propertyDecorator['microFamily'] = '{0}';
+	propertyDecorator['hardDisk'] = '{0}Gb';
+	propertyDecorator['state'] = '{0}';
+
 	function init(){
 		$scope.searchParam = {};
+		$scope.appliedFilters = new Array();
 	}
 
 	$scope.reset = function(){
@@ -99,6 +133,11 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 				parameters[key] = new Array();
 				_.each(item, function(value){
 					parameters[key].push(value);
+
+					var filterValue = propertyDecorator[key].replace('{0}', value);
+					if (!_.contains($scope.appliedFilters, filterValue)){
+						$scope.appliedFilters.push(filterValue);
+					}
 				})
 			}else{
 				parameters[key] = item;
