@@ -42,7 +42,7 @@ exports.find = function(req, res) {
 		query = query.where('price').lt(maxPrice);
 	}
 
-	console.log(JSON.stringify(query));
+	//console.log(JSON.stringify(query));
 	query.exec(function(err, notebooks){
 		if(err) res.status(500).send(err.message);
 		res.status(200).jsonp(notebooks);

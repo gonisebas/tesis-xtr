@@ -11,6 +11,8 @@ module.exports = mongoose.model('Notebook', {
 		batery: String,
     	webcam: Boolean,
     	bluetooth: Boolean,
+      hdmi: Boolean,
+      touchscreen: Boolean,
     	operating_system: String,
     	price: Number,
     	microDescription: String,

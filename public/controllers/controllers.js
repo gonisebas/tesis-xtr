@@ -153,7 +153,7 @@ deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 
 	function init(){
 		notebooksFactory.getNotebooks().then(function(d) {
-		    $scope.notebooks  = d.slice(0, 5);
+		    $scope.notebooks  = d;//d.slice(0, 5);
 		  });
 	};
 
@@ -161,7 +161,55 @@ deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 });
 
 
-deliveryApp.controller('DeliveriesController', function($scope, $stateParams, notebooksFactory) {
+deliveryApp.controller('DeliveriesController', function($scope, $stateParams, notebooksFactory, valuesRange, weight) {
+
+  function rank(list){
+    _.each(list, function(item){
+      item.rank = ranking(item);
+    })
+  }
+
+  function ranking(item){
+    var ranking = 0;
+    ranking += rankByPropery(item, 'price', true);
+    ranking += rankByPropery(item, 'ram', true);
+    ranking += rankByPropery(item, 'hardDisk', true);
+    ranking += rankByPropery(item, 'screen',true);
+    ranking += rankByPropery(item, 'peripheral',true);
+    ranking += rankByPropery(item, 'state',false);
+    console.log('item:' + item.name + ', rank:' + ranking );
+    return ranking;
+  }
+
+  function rankByPropery(item, property, isNumber){
+    var value = 0;
+    if (isNumber){
+      _.each(valuesRange[property], function(a){
+        if (item[property] > a.min && item[property] <= a.max){
+          value = a.value;
+        }
+      });
+    }else{
+      _.each(valuesRange[property], function(a){
+        if (item[property] == a.label){
+          value = a.value;
+        }
+      });
+    }
+    return value * weight[property];
+  }
+
+  function countPeripheral(list){
+    var p = ["bluetooth", "webcam"]
+    _.each(list, function(item){
+      item.peripheral = 0;
+      _.each(p, function(d){
+        if (item[d]){
+          item.peripheral++;
+        }
+      })
+    });
+  }
 
 	function init(){
 		var params = $stateParams.searchParam;
@@ -169,11 +217,17 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
 		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));
-			$scope.bateries = _.uniq(_.pluck(d, 'batery'));
-		  });
+	      $scope.bateries = _.uniq(_.pluck(d, 'batery'));
+        countPeripheral(d);
+        rank(d);
+		});
 	};
 
 	init();
+
+
+
+
 });
 
 
