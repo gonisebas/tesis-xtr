@@ -116,6 +116,8 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 	propertyDecorator['microFamily'] = '{0}';
 	propertyDecorator['hardDisk'] = '{0}Gb';
 	propertyDecorator['state'] = '{0}';
+	propertyDecorator['minPrice'] = 'Desde ${0}';
+	propertyDecorator['maxPrice'] = 'Hasta ${0}';
 
 	function init(){
 		$scope.searchParam = {};
@@ -135,18 +137,48 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 					parameters[key].push(value);
 
 					var filterValue = propertyDecorator[key].replace('{0}', value);
-					if (!_.contains($scope.appliedFilters, filterValue)){
-						$scope.appliedFilters.push(filterValue);
-					}
+					addFilterValue($scope, key, filterValue, false);
 				})
 			}else{
 				parameters[key] = item;
+				var filterValue = propertyDecorator[key].replace('{0}', item);
+				addFilterValue($scope, key, filterValue, true);
 			}
 		});
 		$state.go('results', {searchParam: parameters},{reload: true});
 	}
 	
 	init();
+
+	function existsFilterValue(filters, key){
+		return _.findIndex(filters, function(obj){
+			return (obj.key == key)
+		});
+	}
+
+	function addFilterValue(scope, key, value, override){
+		if ("false" == value) {
+			return;
+		}
+		if (override){
+			var index = existsFilterValue(scope.appliedFilters, key);
+			if (index != -1){
+				$scope.appliedFilters[index].value = value;
+			}else{
+				$scope.appliedFilters.push({key: key, value: value});
+			}
+		}else{
+			var index = _.findIndex(scope.appliedFilters, function(obj){
+				return (obj.value == value)
+			});
+			if (index == -1){
+				$scope.appliedFilters.push({key: key, value: value});
+			}
+		}
+
+
+		
+	}
 });
 
 deliveryApp.controller('OffersController', function($scope, notebooksFactory) {

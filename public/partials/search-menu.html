@@ -11,10 +11,10 @@
 		      </div>
 		      <div id="collapsePrecio" class="panel-collapse collapse in">
 		      	<div class="col-lg-6">
-			       <b>Min</b><input id="ex2" type="number" ng-model="searchParam.minPrice" class="span2" value="0"/> 
+			       <b>Min</b><input id="minPrice" type="number" ng-blur="search()" ng-model="searchParam.minPrice" class="span2" value="0"/> 
 			   	</div>
 			   	<div class="col-lg-6">
-		       		<b>Max</b><input id="ex2" type="number" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
+		       		<b>Max</b><input id="maxPrice" type="number" ng-blur="search()" ng-model="searchParam.maxPrice" class="span2" value="49999"/> 
 		       	</div>
 		      </div>
 		    </div>
@@ -155,7 +155,7 @@
       <div id="collapseFilters" class="panel-collapse collapse in tokenfield">
 
       	<div class="token" ng-repeat="filter in appliedFilters">
-      		<span class="token-label" style="max-width: 770px;">{{filter}}</span>
+      		<span class="token-label" style="max-width: 770px;">{{filter.value}}</span>
       		<a class="close" ng-click="removeThisFilter()" tabindex="-1">×</a>
       	</div>
       </div>
