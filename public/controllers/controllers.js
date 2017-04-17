@@ -13,6 +13,8 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
  		$scope.filterBluetooth = 'false';
  		$scope.filterWebcam = 'false';
  		$scope.filterHdmi = 'false';
+ 		$scope.reverse = true;
+ 		$scope.sortByField = 'price';
 
 		notebooksFactory.getNotebooks().then(function(d) {
 			var quantities = new Object();
@@ -47,6 +49,10 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 			quantities[property][notebook[property]]++;
 
 		});		
+	}
+
+	$scope.toggleReverse = function(){
+		$scope.reverse =  !$scope.reverse;
 	}
 
 	$scope.addToCompare = function(newItem){
@@ -126,6 +132,8 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 
 	$scope.reset = function(){
 		$scope.searchParam = {};	
+		$scope.appliedFilters = new Array();
+		$scope.search();
 	}
  
 	$scope.search = function(){
@@ -134,15 +142,27 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 			if (_.contains(['screen','ram','trademark', 'microFamily', 'hardDisk', 'state'], key)){
 				parameters[key] = new Array();
 				_.each(item, function(value){
-					parameters[key].push(value);
-
-					var filterValue = propertyDecorator[key].replace('{0}', value);
-					addFilterValue($scope, key, filterValue, false);
+					if (value.startsWith('false-')){
+						value = value.split('-')[2];
+						value = propertyDecorator[key].replace('{0}', value)
+						removeFilterValue($scope, key, value);
+					}else{
+						parameters[key].push(value);
+						var filterValue = propertyDecorator[key].replace('{0}', value);
+						addFilterValue($scope, key, filterValue, false);
+					}
 				})
 			}else{
 				parameters[key] = item;
-				var filterValue = propertyDecorator[key].replace('{0}', item);
-				addFilterValue($scope, key, filterValue, true);
+				if(item == null){
+					var index = existsFilterKey($scope.appliedFilters, key);
+					if (index != -1){
+						$scope.appliedFilters.splice(index,1);
+					}
+				}else{
+					var filterValue = propertyDecorator[key].replace('{0}', item);
+					addFilterValue($scope, key, filterValue, true);
+				}
 			}
 		});
 		$state.go('results', {searchParam: parameters},{reload: true});
@@ -150,10 +170,23 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 	
 	init();
 
-	function existsFilterValue(filters, key){
+	function existsFilterKey(filters, key){
 		return _.findIndex(filters, function(obj){
 			return (obj.key == key)
 		});
+	}
+
+	function existsFilterKeyValue(filters, key, value){
+		return _.findIndex(filters, function(obj){
+			return (obj.key == key) && (obj.value == value)
+		});
+	}
+
+	function removeFilterValue(scope, key, value){
+		var index = existsFilterKeyValue(scope.appliedFilters, key, value);
+		if (index != -1){
+			scope.appliedFilters.splice(index,1);
+		}
 	}
 
 	function addFilterValue(scope, key, value, override){
@@ -161,7 +194,7 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 			return;
 		}
 		if (override){
-			var index = existsFilterValue(scope.appliedFilters, key);
+			var index = existsFilterKey(scope.appliedFilters, key);
 			if (index != -1){
 				$scope.appliedFilters[index].value = value;
 			}else{
@@ -198,6 +231,7 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
   function rank(list){
     _.each(list, function(item){
       item.rank = ranking(item);
+      console.log(item.name + " " + item.rank)
     })
   }
 
@@ -207,10 +241,8 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
     ranking += rankByPropery(item, 'ram', true);
     ranking += rankByPropery(item, 'hardDisk', true);
     ranking += rankByPropery(item, 'screen',true);
-    ranking += rankByPropery(item, 'peripheral',true);
     ranking += rankByPropery(item, 'state',false);
-    console.log('item:' + item.name + ', rank:' + ranking );
-    return ranking;
+    return 5 - ranking;
   }
 
   function rankByPropery(item, property, isNumber){
@@ -249,9 +281,9 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 		notebooksFactory.getNotebooks(params).then(function(d) {
 		    $scope.notebooks  = d;
 		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));
-	      $scope.bateries = _.uniq(_.pluck(d, 'batery'));
-        countPeripheral(d);
-        rank(d);
+		    $scope.bateries = _.uniq(_.pluck(d, 'batery'));
+	        countPeripheral(d);
+        	rank(d);
 		});
 	};
 

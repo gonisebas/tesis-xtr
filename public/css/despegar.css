@@ -5,6 +5,10 @@ a {
 body{
   font-size: 14px;
 }
+
+hr{
+  margin-top: 0px;
+}
 .navbar-fixed-top a{
   cursor: default;
 }
@@ -154,7 +158,7 @@ body{
 
 .filter .form-group{
   padding-left: 0px;
-  padding-right: 21px;
+  padding-right: 19px;
   width: initial;
 }
 .filter .form-group label{
@@ -165,9 +169,36 @@ body{
   border: 1px solid #DFDFDF;
   text-align: center;
   padding: 5px ;
+  margin-bottom: 10px;
 }
 
-
+.card:hover {
+    -webkit-box-shadow: 2px 12px 10px rgba(0,0,0,0.3);
+    -moz-box-shadow: 2px 12px 10px  rgba(0,0,0,0.3);
+    box-shadow: 2px 12px 10px rgba(0,0,0,0.3);
+    opacity: 1;
+    cursor: pointer;
+}
 .tokenfield{
   padding: 10px;
+}
+
+.secondaryFilter .item{
+  padding: 5px;
+}
+
+.secondaryFilter .item:hover{
+  background-color: #ecf0f1;
+}
+
+.btn.compare{
+  float: right;
+  margin: 7px
+}
+.sortorder:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
 }

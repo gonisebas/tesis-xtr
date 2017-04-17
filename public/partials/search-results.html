@@ -1,24 +1,26 @@
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default secondaryFilter">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistema Operativo<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-repeat="os in operating_systems track by $index">
-              <input type="checkbox" ng-true-value="'{{os}}'" ng-false-value="''" name="operating_system" ng-model="filterOperatingSystem[$index]">{{os}}</li>
+            <li ng-repeat="os in operating_systems | orderBy: os track by $index" class="item">
+              <input type="checkbox" ng-true-value="'{{os}}'" ng-false-value="''" name="operating_system" ng-model="filterOperatingSystem[$index]"> {{os}}</li>
           </ul>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" style="width:161px">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Batería<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-repeat="batery in bateries track by $index">
-              <input type="checkbox" ng-true-value="'{{batery}}'" ng-false-value="''" name="batery" ng-model="filterBatery[$index]"><a href="#">{{batery}}</a></li>
+            <li ng-repeat="batery in bateries | orderBy: batery track by $index" class="item">
+              <input type="checkbox" ng-true-value="'{{batery}}'" ng-false-value="''" name="batery" ng-model="filterBatery[$index]"> {{batery}}</li>
           </ul>
         </li>
       </ul>
+      <button type="button" class="btn btn-default compare" ng-click="goToCompare()" ng-show="comparationItems.length > 0">Comparar ({{comparationItems.length}})</button>
     </div><!-- /.navbar-collapse -->
+
   </div><!-- /.container-fluid -->
 </nav>
 <hr>

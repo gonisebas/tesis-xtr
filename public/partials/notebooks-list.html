@@ -2,31 +2,33 @@
   <div class="col-lg-3 form-group">
     <label class="control-label " for="email">Ordenar por:</label>
     <select ng-model="sortByField" ng-init="price">
-      <option value="price" selected>Precio</option>
+      <option value="price">Precio</option>
       <option value="trademark">Marca</option>
       <option value="ram">Memoria</option>
+      <option value="screen">Pantalla</option>
       <option value="rank">Preferencias</option>
     </select>
+    <a class="sortorder" ng-show="reverse" ng-click="toggleReverse()">ASC</a>
+    <a class="sortorder reverse" ng-hide="reverse" ng-click="toggleReverse()">DESC</a>
   </div>
 </div>
 
 <div class="container-fluid" style="display: flex;flex-direction: row; flex-wrap: wrap;">
 
-	<div ng-repeat="notebook in list = (notebooks| hasMultipleAttr:filterOperatingSystem:'operating_system' | hasMultipleAttr:filterBatery:'batery' | hasSingleAttr:filterWebcam:'webcam' | hasSingleAttr:filterHdmi:'hdmi' | hasSingleAttr:filterTouchscreen:'touchscreen' | hasSingleAttr:filterBluetooth:'bluetooth' | orderBy: sortByField)" class="col-lg-3 item-container">
+	<div ng-repeat="notebook in list = (notebooks| hasMultipleAttr:filterOperatingSystem:'operating_system' | hasMultipleAttr:filterBatery:'batery' | hasSingleAttr:filterWebcam:'webcam' | hasSingleAttr:filterHdmi:'hdmi' | hasSingleAttr:filterTouchscreen:'touchscreen' | hasSingleAttr:filterBluetooth:'bluetooth' | orderBy: sortByField: reverse)" class="col-lg-3 item-container">
 
 
-        <div class="card" ng-click="view(notebook._id)">
-          <div class="attributes-sumary">
+        <div class="card">
+          <div class="attributes-sumary" ng-click="view(notebook._id)">
             <div class="col-lg-3">{{notebook.trademark}}</div>
             <div class="col-lg-3">{{notebook.screen}}"</div>
             <div class="col-lg-3">{{notebook.microFamily}}</div>
             <div class="col-lg-3">{{notebook.ram}}GB</div>
           </div>
-          <img style="width: 100%" class="card-img-top" src="/css/images/{{notebook.code}}.jpg" alt="Card image cap">
-          <div class="card-block">
+          <img style="width: 100%" class="card-img-top" src="/css/images/{{notebook.code}}.jpg" ng-click="view(notebook._id)">
+          <div class="card-block" ng-click="view(notebook._id)">
             <h5 class="card-title">{{ notebook.name}}</h5>
             <h3 class="card-text">{{ notebook.price | currency }}</h3>
-            
           </div>
           <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar      
         </div>

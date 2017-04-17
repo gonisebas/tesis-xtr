@@ -28,9 +28,9 @@
 		      </div>
 		      <div id="collapseMarca" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <li class="list-group-item" ng-repeat="trademark in trademarks track by $index">
+		          <li class="list-group-item" ng-repeat="trademark in trademarks | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} ({{propertiesCounter['trademark'][trademark]}})</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" ng-false-value="'false-trademark-{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} ({{propertiesCounter['trademark'][trademark]}})</label>
 					</div>
 		          </li>
 		        </ul>
@@ -47,9 +47,9 @@
 		      </div>
 		      <div id="collapsePantalla" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <li class="list-group-item" ng-repeat="screen in screens track by $index">
+		          <li class="list-group-item" ng-repeat="screen in screens | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" name="screen" value="{{screen}}">{{screen}}" ({{propertiesCounter['screen'][screen]}})</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" ng-false-value="'false-screen-{{screen}}'" name="screen" value="{{screen}}">{{screen}}" ({{propertiesCounter['screen'][screen]}})</label>
 					</div>
 		          </li>
 		        </ul>
@@ -67,9 +67,9 @@
 		      </div>
 		      <div id="collapseMemoria" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <li class="list-group-item" ng-repeat="ram in rams track by $index">
+		          <li class="list-group-item" ng-repeat="ram in rams | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.ram[$index]" ng-false-value="''" ng-true-value="'{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb ({{propertiesCounter['ram'][ram]}})</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" ng-false-value="'false-ram-{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb ({{propertiesCounter['ram'][ram]}})</label>
 					</div>
 		          </li>
 		        </ul>
@@ -87,9 +87,9 @@
 		      </div>
 		      <div id="collapseDisco" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <li class="list-group-item" ng-repeat="disk in hardDisks track by $index">
+		          <li class="list-group-item" ng-repeat="disk in hardDisks | orderBy: 'disk':true track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
 					</div>
 		          </li>
 		        </ul>
@@ -105,9 +105,9 @@
 		      </div>
 		      <div id="collapseProcesador" class="panel-collapse collapse">
 		        <ul class="list-group">
-		          <li class="list-group-item" ng-repeat="micro in microFamilies track by $index">
+		          <li class="list-group-item" ng-repeat="micro in microFamilies | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
+						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
 					</div>
 		          </li>
 		        </ul>
@@ -125,9 +125,9 @@
 		      </div>
 		      <div id="collapseEstado" class="panel-collapse collapse">
 		        <ul class="list-group">
-					<li class="list-group-item" ng-repeat="state in states track by $index">
+					<li class="list-group-item" ng-repeat="state in states | orderBy: 'toString()' track by $index">
 						<div class="checkbox">
-							<label><input type="checkbox" ng-change="search()" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" name="state" value="{{state}}">{{state}} ({{propertiesCounter['state'][state]}})</label>
+							<label><input type="checkbox" ng-change="search()" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" ng-false-value="'false-state-{{state}}'" name="state" value="{{state}}">{{state}} ({{propertiesCounter['state'][state]}})</label>
 						</div>
 			        </li>
 		        </ul>
@@ -149,14 +149,15 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" href="#collapseFilters">Filtrado por:</a>
-         
+         <a style="margin-left:9%" ng-click="reset()">(Limpiar Todo)</a>
         </h4>
       </div>
       <div id="collapseFilters" class="panel-collapse collapse in tokenfield">
-
-      	<div class="token" ng-repeat="filter in appliedFilters">
-      		<span class="token-label" style="max-width: 770px;">{{filter.value}}</span>
-      		<a class="close" ng-click="removeThisFilter()" tabindex="-1">×</a>
+		<div class="" ng-show="appliedFilters.length == 0">
+			No existen filtros aplicados.
+		</div>
+      	<div class="token" ng-repeat="filter in appliedFilters" ng-show="appliedFilters.length > 0">
+      		<span class="token-label" style="max-width: 770px;">{{filter.value}}&nbsp;</span>
       	</div>
       </div>
 	</div>
