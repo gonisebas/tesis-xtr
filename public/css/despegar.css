@@ -202,3 +202,9 @@ hr{
 .sortorder.reverse:after {
     content: '\25bc';
 }
+
+@media (min-width: 768px){
+  .compare .modal-dialog{
+    width: 1345px;
+  }
+}

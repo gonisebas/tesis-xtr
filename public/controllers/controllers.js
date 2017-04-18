@@ -56,16 +56,18 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 		});
 	}
 
+	var modalInstance;
 
 	$scope.goToCompare = function(){
-		var modalInstance = $uibModal.open({
+		modalInstance = $uibModal.open({
 			templateUrl: 'partials/compare.html',
 			controller: 'ModalInstanceCtrl',
+			windowClass: 'compare',
+			backdropClass: 'compare',
+			windowTopClass: 'compare', 
 			scope:$scope
 		});
 	}
-
-	var modalInstance;
 	
 	$scope.view = function(notebookId){
 		//$state.go('view',{notebookId: notebookId});

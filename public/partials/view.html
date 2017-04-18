@@ -9,9 +9,15 @@
             <ul class="card-text">
               <li>Procesador: {{notebook.microDescription}}</li>
               <li>Marca: {{notebook.trademark}}</li>
-              <li>Sistema: {{notebook.operating_system}}</li>
-              <li>Batería: {{notebook.batery}}</li>
+              <li>Pantalla: {{notebook.screen}}"</li>
               <li>Memoria: {{notebook.ram}} Gb</li>
+              <li>Disco: {{notebook.hardDisk}} Gb</li>
+              <li>Sistema: {{notebook.operating_system}}</li>
+              <li>HDMI: {{(notebook.hdmi)?'Sí':'No'}}</li>
+              <li>Lector de huellas: {{(notebook.fingerPrintReader)?'Sí':'No'}}</li>
+              <li>Lector de tarjetas: {{(notebook.cardReader)?'Sí':'No'}}</li>
+              <li>Webcam: {{(notebook.webcam)?'Sí':'No'}}</li>
+              <li>Batería: {{notebook.batery}}</li>
               <li>Estado: {{notebook.state}}</li>
             </ul>
             <input type="checkbox" ng-model="selectedItem" ng-change="addToCompare(notebook);">Comparar

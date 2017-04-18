@@ -1,15 +1,36 @@
-<table class="table table-bordered table-hover">
-	<thead><tr><th></th><th>Producto</th><th>Marca</th><th>Memoria</th><th>Pantalla</th><th>Procesador</th><th>Disco rígido</th><th>Precio</th></tr></thead>
-	<tbody>
-		<tr ng-repeat="item in comparationItems">
-			<td><a ng-click="removeToCompare(item._id)">[x]</a></td>
-			<td>{{item.name}}</td>
-			<td>{{item.trademark}}</td>
-			<td>{{item.ram}}Gb</td>
-			<td>{{item.screen}}"</td>
-			<td>{{item.microDescription}}</td>
-			<td>{{item.hardDisk}}Gb</td>
-			<td>{{item.price | currency}}</td>
-		</tr>
-	</tbody>
-</table>
+
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Lista de comparación</h3>
+</div>
+<div class="modal-body" style="display: inline-block">
+	<table class="table table-bordered table-hover" ng-show="comparationItems.length > 0">
+		<thead><tr><th></th><th>Producto</th><th>Procesador</th><th>Marca</th><th>Pantalla</th><th>Memoria</th><th>Disco</th><th>Sist. Op.</th><th>HDMI</th><th>L. huellas</th><th>L. tarjetas</th><th>Webcam</th><th>Batería</th><th>Estado</th><th>Precio</th></tr></thead>
+		<tbody>
+			<tr ng-repeat="item in comparationItems">
+				<td><a ng-click="removeToCompare(item._id)">[x]</a></td>
+				<td>{{item.name}}</td>
+				<td>{{item.microDescription}}</td>
+				<td>{{item.trademark}}</td>
+				<td>{{item.screen}}"</td>
+				<td>{{item.ram}}Gb</td>			
+				<td>{{item.hardDisk}}Gb</td>
+				<td>{{item.operating_system}}</td>
+				<td>{{item.hdmi?'Sí':'No'}}</td>
+				<td>{{item.fingerPrintReader?'Sí':'No'}}</td>
+				<td>{{item.cardReader?'Sí':'No'}}</td>
+				<td>{{item.webcam?'Sí':'No'}}</td>
+				<td>{{item.batery?'Sí':'No'}}</td>
+				<td>{{item.state}}</td>
+				<td>{{item.price | currency}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="alert alert-warning" ng-show="comparationItems.length == 0">
+	No hay productos en la lista de comparación
+	</div>
+</div>
+
+       <div class="modal-footer">
+            <button class="btn btn-default" type="button" ng-click="cancel()">Cerrar</button>
+        </div>
