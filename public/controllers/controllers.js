@@ -40,17 +40,6 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 		});		
 	}
 
-	function propertiesCount(d, quantities, property){
-		quantities[property] = new Object();
-		_.each(d, function(notebook){
-			if (!quantities[property][notebook[property]]){
-				quantities[property][notebook[property]]=0;
-			}
-			quantities[property][notebook[property]]++;
-
-		});		
-	}
-
 	$scope.toggleReverse = function(){
 		$scope.reverse =  !$scope.reverse;
 	}
@@ -100,6 +89,10 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
 	$scope.filterBatery = new Array();
 
 	$scope.comparationItems = new Array();
+
+	$scope.$on('propertiesCounterChanged', function (event, value) {
+	    $scope.propertiesCounter = value;
+	});
 
 	init();
 	
@@ -208,8 +201,6 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 				$scope.appliedFilters.push({key: key, value: value});
 			}
 		}
-
-
 		
 	}
 });
@@ -226,7 +217,7 @@ deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 });
 
 
-deliveryApp.controller('DeliveriesController', function($scope, $stateParams, notebooksFactory, valuesRange, weight) {
+deliveryApp.controller('ResultsController', function($scope, $stateParams, $rootScope, notebooksFactory, valuesRange, weight) {
 
   function rank(list){
     _.each(list, function(item){
@@ -279,22 +270,41 @@ deliveryApp.controller('DeliveriesController', function($scope, $stateParams, no
 		var params = $stateParams.searchParam;
 		$scope.sortByField = 'price';
 		notebooksFactory.getNotebooks(params).then(function(d) {
+			var quantities = new Object();
+			$scope.hardDisks = _.uniq(_.pluck(d, 'hardDisk'));
+			propertiesCount(d,quantities, 'hardDisk');
+
+			$scope.trademarks = _.uniq(_.pluck(d, 'trademark'));
+			propertiesCount(d, quantities, 'trademark');
+
+			$scope.screens = _.uniq(_.pluck(d, 'screen'));
+			propertiesCount(d, quantities, 'screen');
+
+			$scope.rams = _.uniq(_.pluck(d, 'ram'));
+			propertiesCount(d, quantities, 'ram');
+
+			$scope.microFamilies = _.uniq(_.pluck(d, 'microFamily'));
+			propertiesCount(d, quantities, 'microFamily');
+
+			$scope.states = _.uniq(_.pluck(d, 'state'));
+			propertiesCount(d, quantities, 'state');
+
+			$rootScope.$broadcast('propertiesCounterChanged', quantities);
+
+			$scope.propertiesCounter = quantities;
+
+
 		    $scope.notebooks  = d;
 		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));
 		    $scope.bateries = _.uniq(_.pluck(d, 'batery'));
 	        countPeripheral(d);
         	rank(d);
 		});
-	};
+	};  
 
 	init();
 
-
-
-
 });
-
-
 
 deliveryApp.controller('OrdersController', function($scope, $stateParams, $filter, $location, $uibModal, ordersFactory) {
 	
@@ -343,3 +353,14 @@ deliveryApp.controller('DeliveryMenuController', function($scope, $stateParams, 
 
 	init();
 });
+
+	function propertiesCount(d, quantities, property){
+		quantities[property] = new Object();
+		_.each(d, function(notebook){
+			if (!quantities[property][notebook[property]]){
+				quantities[property][notebook[property]]=0;
+			}
+			quantities[property][notebook[property]]++;
+
+		});		
+	}

@@ -20,7 +20,7 @@ deliveryApp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         .state('results', {
             url: '/xtr/busqueda',
             templateUrl: 'partials/search-results.html',
-            controller : 'DeliveriesController',
+            controller : 'ResultsController',
             params:{searchParam:{}}
         })
         .state('delivery', {
