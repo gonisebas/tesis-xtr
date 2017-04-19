@@ -10,7 +10,7 @@ deliveryApp
         PRICE_VERY_EXPENSIVE: 'very_expensive'
 
     }).
-    constant('weight', {state: 0.5, price: 0.08, ram: 0.14, screen: 0.14, hardDisk: 0.14}).
+    constant('weight', {state: 0.3, price: 0.25, ram: 0.25, screen: 0.1, hardDisk: 0.1}).
     constant('valuesRange',{
     	price: [
     		{label: 'very_economic', min:0, max:4375, value:5},	

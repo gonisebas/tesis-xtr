@@ -96,7 +96,7 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="disk in hardDisks | orderBy: 'disk':true track by $index">
 					<div class="checkbox">
-						<label ng-show="propertiesCounter['hardDisk'][disk]"><input type="checkbox" ng-change="search('disk')" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
+						<label ng-show="propertiesCounter['hardDisk'][disk]"><input type="checkbox" ng-change="search('hardDisk')" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
 						<label ng-hide="propertiesCounter['hardDisk'][disk]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB (0)</label>
 					</div>
 		          </li>
@@ -115,7 +115,7 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="micro in microFamilies | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label ng-show="propertiesCounter['microFamily'][micro]"><input type="checkbox" ng-change="search('micro')" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
+						<label ng-show="propertiesCounter['microFamily'][micro]"><input type="checkbox" ng-change="search('microFamily')" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
 						<label ng-hide="propertiesCounter['microFamily'][micro]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} (0)</label>
 					</div>
 		          </li>
