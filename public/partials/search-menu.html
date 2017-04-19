@@ -30,7 +30,12 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="trademark in trademarks | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" ng-false-value="'false-trademark-{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} ({{propertiesCounter['trademark'][trademark]  || 0}})</label>
+						<label ng-show="propertiesCounter['trademark'][trademark]">
+							<input type="checkbox" ng-change="search('trademark')" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" ng-false-value="'false-trademark-{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} ({{propertiesCounter['trademark'][trademark]}})
+						</label>
+						<label ng-hide="propertiesCounter['trademark'][trademark]" class="tachado">
+							<input disabled type="checkbox" ng-change="search()" ng-model="searchParam.trademark[$index]" ng-true-value="'{{trademark}}'" ng-false-value="'false-trademark-{{trademark}}'" name="trademark" value="{{trademark}}">{{trademark}} (0)
+						</label>
 					</div>
 		          </li>
 		        </ul>
@@ -38,7 +43,7 @@
 		    </div>
 
 
-		<!-- MARCA -->
+		<!-- PANTALLA -->
 			<div class="panel panel-default">
 		      <div class="panel-heading">
 		        <h4 class="panel-title">
@@ -49,7 +54,8 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="screen in screens | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" ng-false-value="'false-screen-{{screen}}'" name="screen" value="{{screen}}">{{screen}}" ({{propertiesCounter['screen'][screen] || 0}})</label>
+						<label ng-show="propertiesCounter['screen'][screen]"><input type="checkbox" ng-change="search('screen')" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" ng-false-value="'false-screen-{{screen}}'" name="screen" value="{{screen}}">{{screen}}" ({{propertiesCounter['screen'][screen]}})</label>
+						<label ng-hide="propertiesCounter['screen'][screen]"  class="tachado"><input disabled type="checkbox" ng-model="searchParam.screen[$index]" ng-true-value="'{{screen}}'" ng-false-value="'false-screen-{{screen}}'" name="screen" value="{{screen}}">{{screen}}" (0)</label>
 					</div>
 		          </li>
 		        </ul>
@@ -69,7 +75,8 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="ram in rams | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" ng-false-value="'false-ram-{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb ({{propertiesCounter['ram'][ram] || 0}})</label>
+						<label ng-show="propertiesCounter['ram'][ram]"><input type="checkbox" ng-change="search('ram')" ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" ng-false-value="'false-ram-{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb ({{propertiesCounter['ram'][ram]}})</label>
+						<label ng-hide="propertiesCounter['ram'][ram]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.ram[$index]" ng-true-value="'{{ram}}'" ng-false-value="'false-ram-{{ram}}'" name="ramm" value="{{ram}}">{{ram}}Gb (0)</label>
 					</div>
 		          </li>
 		        </ul>
@@ -89,7 +96,8 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="disk in hardDisks | orderBy: 'disk':true track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk] || 0}})</label>
+						<label ng-show="propertiesCounter['hardDisk'][disk]"><input type="checkbox" ng-change="search('disk')" ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB ({{propertiesCounter['hardDisk'][disk]}})</label>
+						<label ng-hide="propertiesCounter['hardDisk'][disk]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.hardDisk[$index]" ng-true-value="'{{disk}}'" ng-false-value="'false-disk-{{disk}}'" name="hardDisk" value="{{disk}}">{{disk}}GB (0)</label>
 					</div>
 		          </li>
 		        </ul>
@@ -107,7 +115,8 @@
 		        <ul class="list-group">
 		          <li class="list-group-item" ng-repeat="micro in microFamilies | orderBy: 'toString()' track by $index">
 					<div class="checkbox">
-						<label><input type="checkbox" ng-change="search()" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro] || 0}})</label>
+						<label ng-show="propertiesCounter['microFamily'][micro]"><input type="checkbox" ng-change="search('micro')" ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} ({{propertiesCounter['microFamily'][micro]}})</label>
+						<label ng-hide="propertiesCounter['microFamily'][micro]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.microFamily[$index]" ng-true-value="'{{micro}}'" ng-false-value="'false-micro-{{micro}}'" name="microFamily" value="{{micro}}">{{micro}} (0)</label>
 					</div>
 		          </li>
 		        </ul>
@@ -127,22 +136,14 @@
 		        <ul class="list-group">
 					<li class="list-group-item" ng-repeat="state in states | orderBy: 'toString()' track by $index">
 						<div class="checkbox">
-							<label><input type="checkbox" ng-change="search()" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" ng-false-value="'false-state-{{state}}'" name="state" value="{{state}}">{{state}} ({{propertiesCounter['state'][state] || 0}})</label>
+							<label ng-show="propertiesCounter['state'][state]"><input type="checkbox" ng-change="search('state')" ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" ng-false-value="'false-state-{{state}}'" name="state" value="{{state}}">{{state}} ({{propertiesCounter['state'][state]}})</label>
+							<label ng-hide="propertiesCounter['state'][state]" class="tachado"><input type="checkbox" disabled ng-model="searchParam.state[$index]" ng-true-value="'{{state}}'" ng-false-value="'false-state-{{state}}'" name="state" value="{{state}}">{{state}} (0)</label>
 						</div>
 			        </li>
 		        </ul>
 		      </div>
 		    </div>
 		
-	<!--
-		<div class="pull-right ng-scope"> 
-			<button ng-click="search()" class="btn btn-primary ng-scope">Buscar</button>
-			<button ng-click="reset()" class="btn btn-default ng-scope">Limpiar</button>
-		</div>
-	-->
-
-
-
 	</form>
 
 	<div class="panel panel-default">

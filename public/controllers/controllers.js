@@ -14,7 +14,6 @@ deliveryApp.controller('HomeController', function($scope, $state, $uibModal,note
  		$scope.filterWebcam = 'false';
  		$scope.filterHdmi = 'false';
  		$scope.reverse = true;
- 		$scope.sortByField = 'price';
 
 		notebooksFactory.getNotebooks().then(function(d) {
 			var quantities = new Object();
@@ -131,7 +130,7 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 		$scope.search();
 	}
  
-	$scope.search = function(){
+	$scope.search = function(filterName){
 		var parameters = {}
 		_.map($scope.searchParam, function(item,key){
 			if (_.contains(['screen','ram','trademark', 'microFamily', 'hardDisk', 'state'], key)){
@@ -160,7 +159,7 @@ deliveryApp.controller('MenuController', function($scope, $state, notebooksFacto
 				}
 			}
 		});
-		$state.go('results', {searchParam: parameters},{reload: true});
+		$state.go('results', {searchParam: parameters, additional: filterName},{reload: true});
 	}
 	
 	init();
@@ -221,6 +220,18 @@ deliveryApp.controller('OffersController', function($scope, notebooksFactory) {
 
 deliveryApp.controller('ResultsController', function($scope, $stateParams, $rootScope, notebooksFactory, valuesRange, weight) {
 
+	$scope.sortByField = 'price-low-high';
+
+	$scope.orderByField = function (result) {
+		if ($scope.sortByField == 'price-low-high') {
+			return result.price;
+		}
+		if ($scope.sortByField == 'price-high-low') {
+			return -result.price;
+		}
+		else return result[$scope.sortByField];
+	};
+
   function rank(list){
     _.each(list, function(item){
       item.rank = ranking(item);
@@ -270,7 +281,7 @@ deliveryApp.controller('ResultsController', function($scope, $stateParams, $root
 
 	function init(){
 		var params = $stateParams.searchParam;
-		$scope.sortByField = 'price';
+		var fieldName = $stateParams.additional;
 		notebooksFactory.getNotebooks(params).then(function(d) {
 			var quantities = new Object();
 			$scope.hardDisks = _.uniq(_.pluck(d, 'hardDisk'));
@@ -291,10 +302,13 @@ deliveryApp.controller('ResultsController', function($scope, $stateParams, $root
 			$scope.states = _.uniq(_.pluck(d, 'state'));
 			propertiesCount(d, quantities, 'state');
 
-			$rootScope.$broadcast('propertiesCounterChanged', quantities);
+			_.each(quantities, function(value, key){
+				if (fieldName != key){
+					$scope.propertiesCounter[key] = value;
+				}
+			});
 
-			$scope.propertiesCounter = quantities;
-
+			$rootScope.$broadcast('propertiesCounterChanged', $scope.propertiesCounter);
 
 		    $scope.notebooks  = d;
 		    $scope.operating_systems = _.uniq(_.pluck(d, 'operating_system'));
